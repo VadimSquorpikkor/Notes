@@ -36,7 +36,16 @@ class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder>{//
         holder.textViewTitle.setText(note.getTitle());
         holder.textViewDescription.setText(note.getDescription());
         holder.textViewDayOfWeek.setText(note.getDayOfWeek());
-        holder.textViewPriority.setText(String.valueOf(note.getPriority()));
+        int colorId;
+        int priority = note.getPriority();
+        switch (priority) {
+            case 0: colorId = holder.itemView.getResources().getColor(android.R.color.holo_red_light);break;
+            case 1: colorId = holder.itemView.getResources().getColor(android.R.color.holo_orange_light);break;
+            //Если не поставить default, а 2, то дальше в коде будет ошибка, так как будет возможен вариант, когда переменная не проинициализирована
+            default: colorId = holder.itemView.getResources().getColor(android.R.color.holo_green_light);break;
+        }
+        holder.textViewTitle.setBackgroundColor(colorId);
+
     }
 
     //Просто возвращает кол-во элементов в массиве
@@ -50,7 +59,6 @@ class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder>{//
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewDayOfWeek;
-        private TextView textViewPriority;
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,10 +66,6 @@ class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder>{//
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
             textViewDayOfWeek = itemView.findViewById(R.id.textViewDayOfWeek);
-            textViewPriority = itemView.findViewById(R.id.textViewPriority);
-
-
-
         }
     }
 }
