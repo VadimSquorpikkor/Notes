@@ -6,6 +6,7 @@ class Note {
     private String dayOfWeek;
     private int priority;
 
+    //todo получается не нужно, присоздании другой механизм, не из static final String, а из xml
     static final String SUNDAY = "Sunday";
     static final String MONDAY = "Monday";
     static final String TUESDAY = "Tuesday";

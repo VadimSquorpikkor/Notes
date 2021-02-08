@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,8 @@ import static com.squorpikkor.app.notes.Note.ОЧЕНЬ_СРОЧНО;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewNotes;
-    private ArrayList<Note> notes = new ArrayList<>();
+    //public static final это конечно вообще не правильно, сделано пока, как затычка
+    public static final ArrayList<Note> notes = new ArrayList<>();
 
 
     @Override
@@ -24,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerViewNotes = findViewById(R.id.recyclerViewNotes);
-        notes.add(new Note("Парикмахерская", "Подстричся", MONDAY, ОЧЕНЬ_СРОЧНО));
-        notes.add(new Note("Парикмахерская", "Подстричся", MONDAY, ОЧЕНЬ_СРОЧНО));
-        notes.add(new Note("Парикмахерская", "Подстричся", MONDAY, ОЧЕНЬ_СРОЧНО));
+
+        if (notes.isEmpty()) {
+            notes.add(new Note("Парикмахерская", "Подстричся", MONDAY, ОЧЕНЬ_СРОЧНО));
+            notes.add(new Note("Парикмахерская", "Подстричся", MONDAY, ОЧЕНЬ_СРОЧНО));
+            notes.add(new Note("Парикмахерская", "Подстричся", MONDAY, ОЧЕНЬ_СРОЧНО));
+        }
 
         NotesAdapter notesAdapter = new NotesAdapter(notes);
         //  Указать, как будут располагаться элеементы в RecycleView: по вертикали, горизонтали или сеткой
@@ -43,5 +49,13 @@ public class MainActivity extends AppCompatActivity {
         //В несколько столюцов, в примере - 3. Это всё работает с тем же ArrayList, ничего не нужно переделывать
         //recyclerViewNotes.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerViewNotes.setAdapter(notesAdapter);
+
+        findViewById(R.id.buttonAddNote).setOnClickListener(view -> addNote());
+    }
+
+    private void addNote() {
+        Intent intent = new Intent(this, AddNoteActivity.class);
+        startActivity(intent);
+
     }
 }
