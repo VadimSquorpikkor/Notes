@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     //public static final это конечно вообще не правильно, сделано пока, как затычка
     public static final ArrayList<Note> notes = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +34,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         NotesAdapter notesAdapter = new NotesAdapter(notes);
-        //  Указать, как будут располагаться элеементы в RecycleView: по вертикали, горизонтали или сеткой
-        //
-        //  LinearLayoutManager arranges the items in a one-dimensional list
-        //  GridLayoutManager arranges all items in a two-dimensional grid
-        //  StaggeredGridLayoutManager is similar to GridLayoutManager, but it does not require that
-        //items in a row have the same height (for vertical grids) or items in the same column have
-        //the same width (for horizontal grids). The result is that the items in a row or column
-        //can end up offset from each other
+            //  Указать, как будут располагаться элеементы в RecycleView: по вертикали, горизонтали или сеткой
+            //
+            //  LinearLayoutManager arranges the items in a one-dimensional list
+            //  GridLayoutManager arranges all items in a two-dimensional grid
+            //  StaggeredGridLayoutManager is similar to GridLayoutManager, but it does not require that
+            //items in a row have the same height (for vertical grids) or items in the same column have
+            //the same width (for horizontal grids). The result is that the items in a row or column
+            //can end up offset from each other
         recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this));
-        //Это, если нужно сделать RecycleView по горизонтали (если поставить true, порядок элементов будет реверсивным (справа на лево)):
-        //recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        //В несколько столюцов, в примере - 3. Это всё работает с тем же ArrayList, ничего не нужно переделывать
-        //recyclerViewNotes.setLayoutManager(new GridLayoutManager(this, 3));
+            //Это, если нужно сделать RecycleView по горизонтали (если поставить true, порядок элементов будет реверсивным (справа на лево)):
+            //recyclerViewNotes.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            //В несколько столюцов, в примере - 3. Это всё работает с тем же ArrayList, ничего не нужно переделывать
+            //recyclerViewNotes.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerViewNotes.setAdapter(notesAdapter);
 
         findViewById(R.id.buttonAddNote).setOnClickListener(view -> addNote());
@@ -56,6 +55,5 @@ public class MainActivity extends AppCompatActivity {
     private void addNote() {
         Intent intent = new Intent(this, AddNoteActivity.class);
         startActivity(intent);
-
     }
 }

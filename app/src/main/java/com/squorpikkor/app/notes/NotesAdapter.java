@@ -39,8 +39,8 @@ class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder>{//
         int colorId;
         int priority = note.getPriority();
         switch (priority) {
-            case 0: colorId = holder.itemView.getResources().getColor(android.R.color.holo_red_light);break;
-            case 1: colorId = holder.itemView.getResources().getColor(android.R.color.holo_orange_light);break;
+            case 1: colorId = holder.itemView.getResources().getColor(android.R.color.holo_red_light);break;
+            case 2: colorId = holder.itemView.getResources().getColor(android.R.color.holo_orange_light);break;
             //Если не поставить default, а 2, то дальше в коде будет ошибка, так как будет возможен вариант, когда переменная не проинициализирована
             default: colorId = holder.itemView.getResources().getColor(android.R.color.holo_green_light);break;
         }
