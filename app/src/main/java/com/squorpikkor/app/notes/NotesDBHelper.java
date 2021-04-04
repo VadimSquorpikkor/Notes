@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 class NotesDBHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "notes.db";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;//при изменении версии, вызовется onUpgrade, база будет удалена и создана заново. Поэтому если например изменился тип данных, то просто меняем версию и всё удалится автоматом
 
     public NotesDBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);

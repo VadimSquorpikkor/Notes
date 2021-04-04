@@ -1,9 +1,10 @@
 package com.squorpikkor.app.notes;
 
 class Note {
+    private int id;
     private String title;
     private String description;
-    private String dayOfWeek;
+    private int dayOfWeek;
     private int priority;
 
     //todo получается не нужно, присоздании другой механизм, не из static final String, а из xml
@@ -18,11 +19,16 @@ class Note {
     static final int ТАК = 1;
     static final int ОЧЕНЬ_СРОЧНО = 2;
 
-    public Note(String title, String description, String dayOfWeek, int priority) {
+    public Note(int id, String title, String description, int dayOfWeek, int priority) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dayOfWeek = dayOfWeek;
         this.priority = priority;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -33,11 +39,23 @@ class Note {
         return description;
     }
 
-    public String getDayOfWeek() {
+    public int getDayOfWeek() {
         return dayOfWeek;
     }
 
     public int getPriority() {
         return priority;
+    }
+
+    public static String getDayAsString(int dayNum) {
+        switch (dayNum) {
+            case 0: return "Понедельник";
+            case 1: return "Вторник";
+            case 2: return "Среда";
+            case 3: return "Четверг";
+            case 4: return "Пятница";
+            case 5: return "Суббота";
+            default: return "Воскресенье";
+        }
     }
 }
